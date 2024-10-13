@@ -9,7 +9,7 @@ use crate::FirmwareEdition::{Plus, Premium, Standard};
 use crate::ParseFirmwareEditionError::ParseEditionError;
 use crate::ParseFirmwareVersionError::{InvalidSubversionFormatError, UnmatchedSubversionError};
 
-#[derive(Default, Clone)]
+#[derive(Default, Debug, Clone)]
 pub enum FirmwareEdition {
     #[default]
     Standard,
@@ -28,7 +28,7 @@ pub enum ParseFirmwareEditionError {
     ParseEditionError,
 }
 
-#[derive(Default, Clone)]
+#[derive(Default, Debug, Clone)]
 pub struct FirmwareVersion {
     major: u8,
     minor: u8,
