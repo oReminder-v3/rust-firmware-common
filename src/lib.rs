@@ -1,4 +1,12 @@
+#![feature(diagnostic_namespace)]
+
+#[macro_use]
+extern crate log;
+extern crate pretty_env_logger;
+
+pub mod commandline;
 pub mod constant;
+pub mod result;
 
 use std::cmp::Ordering;
 use std::fmt;
