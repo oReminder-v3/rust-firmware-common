@@ -21,17 +21,6 @@ impl ResultResponse {
         result
     }
 
-    pub fn from_result(result: Result<reqwest::blocking::Response, reqwest::Error>) -> Self {
-        if result.as_ref().is_err() {
-            exit_with_cause("cannot unpack response!");
-        }
-        let text = result.unwrap().text();
-        if text.is_err() {
-            exit_with_cause("cannot unpack response!");
-        }
-        return Self::new(text.unwrap().clone());
-    }
-
     pub fn is_ok(&self) -> bool {
         self.ok_or_fail
     }
