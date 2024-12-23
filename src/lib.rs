@@ -2,11 +2,11 @@
 extern crate log;
 extern crate pretty_env_logger;
 
-mod apis;
+pub mod apis;
 pub mod commandline;
 pub mod constant;
 pub mod result;
-mod utils;
+pub mod utils;
 
 use std::cmp::Ordering;
 use std::fmt;
