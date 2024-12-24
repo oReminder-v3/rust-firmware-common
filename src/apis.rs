@@ -19,15 +19,18 @@ pub fn login(email: &String, password: &String) -> String {
     data.insert("email", email);
     data.insert("password", password);
     let res = client.post(url).json(&data).send();
-    let auth_key = res
+    let auth_key;
+    if res
         .as_ref()
         .unwrap()
         .headers()
         .get("Authorization")
-        .unwrap()
-        .to_str()
-        .unwrap()
-        .to_string();
+        .is_some()
+    {
+        auth_key = auth_key.unwrap().to_str().unwrap().to_string();
+    } else {
+        auth_key = "";
+    }
     let body = res.unwrap().text();
     if body.is_err() {
         exit_with_cause("Failed to parse server data!");
