@@ -19,17 +19,12 @@ pub fn login(email: &String, password: &String) -> String {
     data.insert("email", email);
     data.insert("password", password);
     let res = client.post(url).json(&data).send();
-    let auth_key;
-    if res
-        .as_ref()
-        .unwrap()
-        .headers()
-        .get("Authorization")
-        .is_some()
-    {
-        auth_key = auth_key.unwrap().to_str().unwrap().to_string();
+    let opt_auth_key = res.as_ref().unwrap().headers().get("Authorization");
+    let auth_key: String;
+    if opt_auth_key.is_some() {
+        auth_key = opt_auth_key.unwrap().to_str().unwrap().to_string();
     } else {
-        auth_key = "";
+        auth_key = "".to_string();
     }
     let body = res.unwrap().text();
     if body.is_err() {
