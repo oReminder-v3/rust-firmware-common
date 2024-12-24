@@ -184,7 +184,7 @@ impl FirmwareVersion {
             if subversion.starts_with('0') {
                 let char = subversion.chars().nth(1).unwrap();
                 if char.is_ascii_digit() {
-                    return Some(char as u8);
+                    return Some(char.to_digit(10).unwrap() as u8);
                 }
             }
             let result = subversion.parse::<u8>();
